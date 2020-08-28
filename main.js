@@ -4,12 +4,14 @@ $(document).ready(function() {
          'url': 'https://flynn.boolean.careers/exercises/api/array/music',
          'method': 'GET',
          'success': function(arrObj){
-                  console.log(arrObj);
-                  
-                  for (var i = 0; i < arrObj.length; i++) {
-                     leggiDati(arrObj.poster);
+                    // console.log(arrObj);
+                    // console.log(arrObj.response);
 
+                    var arr = arrObj.response;
 
+                  for (var i = 0; i < arr.length; i++) {
+                     console.log(arr[i]);
+                     leggiDati(arr[i]);
                   }
          },
          'error':function(){
