@@ -71,10 +71,13 @@ $(document).ready(function() {
                  });
 
                  $('#all').click(function(){
+                     $('.cd').hide();
 
-                     for (var i = 0; i < arr.length; i++) {
-                        leggiDati(arr[i]);
-                    }
+                       for (var i = 0; i < arr.length; i++) {
+                          console.log(arr[i]);
+                          leggiDati(arr[i]);
+                      }
+
 
                  });
 
