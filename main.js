@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function(){
     $.ajax(
     {
          'url': 'https://flynn.boolean.careers/exercises/api/array/music',
@@ -10,76 +10,82 @@ $(document).ready(function() {
                     var arr = arrObj.response;
 
                   for (var i = 0; i < arr.length; i++) {
-                     console.log(arr[i]);
+                     // console.log(arr[i]);
                      leggiDati(arr[i]);
                  }
 
-                 $('#pop').click(function(){
-                     $('.cd').hide();
-                     var i = 0;
-
-                     while (i < arr.length){
-                         var genere = arr[i].genre;
-                            if(genere == 'Pop'){
-                                leggiDati(arr[i]);
-                            }
-
-                         i++;
-                     }
+                 $(document).on('click', 'button', function(){
+                   var genere = $(this).html();
+                   console.log(genere);
+                   sceltaGenere(genere);
                  });
-
-                 $('#rock').click(function(){
-                     $('.cd').hide();
-                     var i = 0;
-
-                     while (i < arr.length){
-                         var genere = arr[i].genre;
-                            if(genere == 'Rock'){
-                                leggiDati(arr[i]);
-                            }
-
-                         i++;
-                     }
-                 });
-
-                 $('#metal').click(function(){
-                     $('.cd').hide();
-                     var i = 0;
-
-                     while (i < arr.length){
-                         var genere = arr[i].genre;
-                            if(genere == 'Metal'){
-                                leggiDati(arr[i]);
-                            }
-
-                         i++;
-                     }
-                 });
-
-                 $('#jazz').click(function(){
-                     $('.cd').hide();
-                     var i = 0;
-
-                     while (i < arr.length){
-                         var genere = arr[i].genre;
-                            if(genere == 'Jazz'){
-                                leggiDati(arr[i]);
-                            }
-
-                         i++;
-                     }
-                 });
-
-                 $('#all').click(function(){
-                     $('.cd').hide();
-
-                       for (var i = 0; i < arr.length; i++) {
-                          console.log(arr[i]);
-                          leggiDati(arr[i]);
-                      }
-
-
-                 });
+//1a soluzione
+                 // $('#pop').click(function(){
+                 //     $('.cd').hide();
+                 //     var i = 0;
+                 //
+                 //     while (i < arr.length){
+                 //         var genere = arr[i].genre;
+                 //            if(genere == 'Pop'){
+                 //                leggiDati(arr[i]);
+                 //            }
+                 //
+                 //         i++;
+                 //     }
+                 // });
+                 //
+                 // $('#rock').click(function(){
+                 //     $('.cd').hide();
+                 //     var i = 0;
+                 //
+                 //     while (i < arr.length){
+                 //         var genere = arr[i].genre;
+                 //            if(genere == 'Rock'){
+                 //                leggiDati(arr[i]);
+                 //            }
+                 //
+                 //         i++;
+                 //     }
+                 // });
+                 //
+                 // $('#metal').click(function(){
+                 //     $('.cd').hide();
+                 //     var i = 0;
+                 //
+                 //     while (i < arr.length){
+                 //         var genere = arr[i].genre;
+                 //            if(genere == 'Metal'){
+                 //                leggiDati(arr[i]);
+                 //            }
+                 //
+                 //         i++;
+                 //     }
+                 // });
+                 //
+                 // $('#jazz').click(function(){
+                 //     $('.cd').hide();
+                 //     var i = 0;
+                 //
+                 //     while (i < arr.length){
+                 //         var genere = arr[i].genre;
+                 //            if(genere == 'Jazz'){
+                 //                leggiDati(arr[i]);
+                 //            }
+                 //
+                 //         i++;
+                 //     }
+                 // });
+                 //
+                 // $('#all').click(function(){
+                 //     $('.cd').hide();
+                 //
+                 //       for (var i = 0; i < arr.length; i++) {
+                 //          console.log(arr[i]);
+                 //          leggiDati(arr[i]);
+                 //      }
+                 //
+                 //
+                 // });
 
 
          },
@@ -94,7 +100,16 @@ $(document).ready(function() {
 function leggiDati (d){
 	var source = $('#entry-template').html();
 	var template = Handlebars.compile(source);
+    var html = template(d);
+    $('.cds-container').append(html);
+    }
 
-	var html = template(d);
-	$('.cds-container').append(html);
-}
+
+function sceltaGenere(genereMusica){
+    if (genereMusica == 'All'){
+        $('.cd').show();
+    } else {
+        $('.cd').hide();
+        $('.cd.' + genereMusica).show();
+    }
+    }
